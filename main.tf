@@ -21,7 +21,7 @@ for_each = var.rg_names
   location = each.value.location
 }
 
-resource "azurerm_storage_account" "vaibhav1" {
+resource "azurerm_storage_account" "vaibhav1nitesh" {
   for_each = var.storage_accounts
   name                     = each.value.name
   resource_group_name      = azurerm_resource_group.vaibhav1[each.key].name
