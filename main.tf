@@ -15,13 +15,17 @@ provider "azurerm" {
 
 
 
+
 resource "azurerm_resource_group" "vaibhav1" {
 for_each = var.rg_names
   name     = each.value.name
   location = each.value.location
 }
 
+
+resource "azurerm_storage_account" "stg" {
 resource "azurerm_storage_account" "vaibhav1nitesh" {
+
   for_each = var.storage_accounts
   name                     = each.value.name
   resource_group_name      = azurerm_resource_group.vaibhav1[each.key].name
@@ -32,6 +36,10 @@ resource "azurerm_storage_account" "vaibhav1nitesh" {
   tags = {
     environment = "Terraform"
   }
+
+  
+}
+
 }
 
 variable "storage_accounts" {
@@ -41,3 +49,4 @@ variable "storage_accounts" {
     account_replication_type = string
   }))
 }
+
